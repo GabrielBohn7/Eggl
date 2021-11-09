@@ -2,13 +2,13 @@
   <div class="row">
 
     <section class="col-3">
-      <h5 class="text-warning ml-3">Ordenar</h5>
+      <h5 class="text-primary ml-3">Ordenar</h5>
       <select class="custom-select my-3" (change)="onSortSelected($event.target.value)">
         <!-- <option>Alphabetical</option> -->
         <option *ngFor="let sort of sortOptions" [value]="sort.value">{{sort.nome}}</option>
       </select>
 
-      <h5 class="text-warning ml-3">Categorias</h5>
+      <h5 class="text-primary ml-3">Categorias</h5>
       <ul class="list-group my-3">
         <li class="list-group-item" *ngFor="let categoria of categorias"
           [class.active]="categoria.id === this.categoriaIdSelecionada" [value]="categoria.id"

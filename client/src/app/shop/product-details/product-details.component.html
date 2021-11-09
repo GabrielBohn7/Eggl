@@ -1,0 +1,25 @@
+<div *ngIf="product">
+
+    <div class="col-6">
+        <img src="https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg" alt="{{product.nome}}" class="img-fluid w-100">
+     </div>
+     <div class="col-6">
+        <h3>{{product.nome}}</h3>
+        <p>{{product.preco | currency }}</p>
+        <div class="d-flex justify-content-start align-items-center">
+           <i class=" fa fa-minus-circle text-primary mr-2" style="cursor: pointer; font-size: 2em;"></i>
+            <span class="font-weight-bold" style="font-size: 1.5em">2</span>
+           <i class=" fa fa-plus-circle text-primary mx-2" style="cursor: pointer; font-size: 2em;"></i>
+            <button class="btn btn-outline-secondary btn-lg ml-4">Add to Cart</button>
+        </div>
+     </div>
+     <div class="row mt-5">
+        <div class="col-12 ml-3">
+            <h4>Código do Produto: </h4>
+            <p>{{product.codProduto}}</p>
+        </div>
+     </div>
+
+</div>
+
+

@@ -5,6 +5,7 @@ import { ICategoria } from '../shared/models/categoria';
 import { IPagination } from '../shared/models/pagination';
 import { IProduct } from '../shared/models/products';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -38,6 +39,11 @@ export class ShopService {
     .pipe(map(response => {
       return response.body;
     }));
+  }
+
+  getProduct(id: number){
+    return this.http.get<IProduct>(this.baseUrl + 'products/' + id)
+    //return this.http.get<IProduct>(this.baseUrl + 'products/' + id)
   }
 
   getCategorias(){
