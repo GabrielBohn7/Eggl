@@ -15,6 +15,7 @@ using Microsoft.OpenApi.Models;
 using Infrastructure.Data;
 using Core.Interfaces;
 using API.Helpers;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 
 namespace API
 {
@@ -45,12 +46,27 @@ namespace API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
             });
+
+            //services.AddCors();
+            services.AddCors(opt =>
+            {
+                opt.AddPolicy("CorsPolicy", policy =>
+                {
+                    policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+                });
+            });
+            // services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            // {
+            //     builder.AllowAnyOrigin()
+            //         .AllowAnyMethod()
+            //         .AllowAnyHeader();
+            // }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseDeveloperExceptionPage();
+            //app.UseDeveloperExceptionPage();
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1"));
 
@@ -59,6 +75,16 @@ namespace API
             app.UseRouting();
 
             app.UseStaticFiles();
+
+            //app.UseCors("MyPolicy");
+            // app.UseCors(
+            //     options => options.SetIsOriginAllowed(x => _ = true).AllowAnyMethod().AllowAnyHeader().AllowCredentials()
+            // );
+            // app.UseCors(
+            //     options => options.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader()
+            // );
+
+            app.UseCors("CorsPolicy");
 
             app.UseAuthorization();
 
