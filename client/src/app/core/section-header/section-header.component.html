@@ -1,0 +1,24 @@
+<br>    
+<br>
+<br>
+
+<ng-container *ngIf="(breadcrumb$ | async) as breadcrumbs">
+    <section class="py-5" style="background-color: #ADD8E6;">
+        <div class="container">
+            <div class="row d-flex align-items-center">
+                <div class="col-9">
+                    <!-- <h1>{{breadcrumbs.length > 0 && breadcrumb[breadcrumbs.length-1].label | titlecase}}</h1> -->
+                    <!-- <h1>{{ breadcrumb.label | titlecase}}</h1> -->
+                    <h1>Eggl - Produtos Alimentícios</h1>
+                </div>
+                <div class="col-3">
+                    <xng-breadcrumb></xng-breadcrumb>
+                </div>
+            </div>
+        </div>
+    </section>
+</ng-container>
+
+
+
+<!-- *ngIf="breadcrumbs.length > 0 && breadcrumb[breadcrumbs.length-1].label !== 'Home'" -->
