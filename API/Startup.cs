@@ -16,6 +16,7 @@ using Infrastructure.Data;
 using Core.Interfaces;
 using API.Helpers;
 using Microsoft.AspNetCore.Cors.Infrastructure;
+using StackExchange.Redis;
 
 namespace API
 {
@@ -34,14 +35,22 @@ namespace API
         {
             services.AddAutoMapper(typeof(MappingProfiles));
 
-            services.AddScoped<IProductRepository, ProductRepository>();
-
-            services.AddScoped(typeof(IGenericRepository<>), (typeof(GenericRepository<>)));
-
             services.AddControllers();
 
             services.AddDbContext<StoreContext>(x => x.UseSqlite(_configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddSingleton<IConnectionMultiplexer>(c => {
+                var configuration = ConfigurationOptions.Parse(_configuration.GetConnectionString("Redis"), true);
+                return ConnectionMultiplexer.Connect(configuration);
+            });
+
+            services.AddScoped<IProductRepository, ProductRepository>();
+
+            services.AddScoped<IBasketRepository, BasketRepository>();
+
+            services.AddScoped(typeof(IGenericRepository<>), (typeof(GenericRepository<>)));
+
+            //services.AddScoped<IBasketRepository, BasketRepository>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
@@ -76,7 +85,7 @@ namespace API
 
             app.UseStaticFiles();
 
-            //app.UseCors("MyPolicy");
+            app.UseCors("MyPolicy");
             // app.UseCors(
             //     options => options.SetIsOriginAllowed(x => _ = true).AllowAnyMethod().AllowAnyHeader().AllowCredentials()
             // );
@@ -84,7 +93,7 @@ namespace API
             //     options => options.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader()
             // );
 
-            app.UseCors("CorsPolicy");
+            //app.UseCors("CorsPolicy");
 
             app.UseAuthorization();
 
