@@ -28,7 +28,7 @@ namespace API.Controllers
             _mapper = mapper;
         }
         
-        [EnableCors("MyPolicy")]
+        //[EnableCors("MyPolicy")]
         [HttpGet]
         public async Task<ActionResult<Pagination<ProductToReturnDto>>> GetProducts([FromQuery]ProductSpecParams productParams)
         {
@@ -45,7 +45,7 @@ namespace API.Controllers
             return Ok(new Pagination<ProductToReturnDto>(productParams.PageIndex, productParams.PageSize, totalItems, data));
         }
 
-        [EnableCors("MyPolicy")]
+        //[EnableCors("MyPolicy")]
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductToReturnDto>> GetProduct(int id)
         {
@@ -56,7 +56,7 @@ namespace API.Controllers
             return _mapper.Map<Product, ProductToReturnDto>(product);
         }
 
-        [EnableCors("MyPolicy")]
+        //[EnableCors("MyPolicy")]
         [HttpGet("Categorias")]
         public async Task<ActionResult<IReadOnlyList<ProductCategoria>>> GetProductCategorias()
         {

@@ -85,7 +85,7 @@ namespace API
 
             app.UseStaticFiles();
 
-            app.UseCors("MyPolicy");
+            //app.UseCors("MyPolicy");
             // app.UseCors(
             //     options => options.SetIsOriginAllowed(x => _ = true).AllowAnyMethod().AllowAnyHeader().AllowCredentials()
             // );
@@ -93,7 +93,7 @@ namespace API
             //     options => options.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader()
             // );
 
-            //app.UseCors("CorsPolicy");
+            app.UseCors("CorsPolicy");
 
             app.UseAuthorization();
 

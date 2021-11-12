@@ -17,6 +17,7 @@ namespace Core.Entities
         }
 
         public string Id { get; set; }
+        public int ProductId { get; set; }
         public List<BasketItem> Item { get; set; } = new List <BasketItem>();
     }
 }

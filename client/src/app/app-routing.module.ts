@@ -8,6 +8,7 @@ import { ShopComponent } from './shop/shop.component';
 const routes: Routes = [
   {path: '', component: HomeComponent , data: {breadcrumb: 'Home'}},
   {path: 'shop', loadChildren: () => import('./shop/shop.module').then(mod => mod.ShopModule), data: {breadcrumb: 'Shop'}},
+  {path: 'basket', loadChildren: () => import('./basket/basket.module').then(mod => mod.BasketModule), data: {breadcrumb: 'basket'}},
   {path: '**', redirectTo: '', pathMatch: 'full'},
 ]
 
