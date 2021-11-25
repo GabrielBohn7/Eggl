@@ -20,8 +20,8 @@ export class ShopComponent implements OnInit {
     {nome: 'Preço: Menor para Maior', value: 'priceAsc'},
     {nome: 'Preço: Maior para Menor', value: 'priceDesc'}
   ];
-  pageNumber = 2;
-  pageSize = 2;
+  pageNumber = 1;
+  pageSize = 4;
   totalCount!: number;
   @ViewChild('search', {static: true}) searchTerm!: ElementRef;
   search!: string;
